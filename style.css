@@ -124,14 +124,14 @@ h1{
     line-height: 42px;
     padding: 8px 10px 0px 10px;
 }
-.currensy{
+.currensy-left, .currency-right{
     height: 28px;
     width: 50px;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 3px;
 }
-.button{
+.button-left, .button-right{
     float: left;
     font-family: 'Roboto';
     font-style: normal;
