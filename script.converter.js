@@ -3,14 +3,26 @@ const rightSideButton = document.querySelectorAll('.button-right')
 
 const allSelect = document.querySelectorAll('#select')
 
-const firstSelect = document.querySelector('.currency-right')
-const secondSelect = document.querySelector('.right-select')
+const firstSelect = document.querySelector('.currensy-left')
+const secondSelect = document.querySelector('.currency-right')
+
 
 const leftArea = document.querySelector('#input-left')
 const rightArea = document.querySelector('#input-right')
 
+const reversArrow = document.querySelector('#arrow')
+
+const paragrafLeft = document.querySelector('.data-entery-paragraf-left')
+const paragrafRight = document.querySelector('.data-entery-paragraf-right')
+
+
+
+const variable = []
+const variableRevers = []
+
 let oneCurrency = 'RUB';
 let twoCurrency = 'USD';
+let loadTime = null;
 
 
 const functionDataApi = async () => {
@@ -46,6 +58,7 @@ rightSideButton.forEach((btn) => {
 })
 
 firstSelect.addEventListener('change', (event) => {
+    console.log(event.target);
     oneCurrency = event.target.value
     calculate()
 })
@@ -55,18 +68,86 @@ secondSelect.addEventListener('change', (event) => {
     calculate()
 })
 
+reversArrow.addEventListener('click', () => {
+    const variableStorage = oneCurrency
+    oneCurrency = twoCurrency
+    twoCurrency = variableStorage
+    calculate()
+})
+
+leftArea.addEventListener('keyup', () => {
+    calculateKeyUpLeft()
+
+})
+
+rightArea.addEventListener('keyup', () => {
+    calculateKeyUpRight()
+})
+
+const loaingStyle = () => {
+    loadTime = setTimeout(() => {
+        document.querySelector('.overlay').classList.remove('hidden')
+        loadTime = null
+    }, 500)
+}
+
+const loadStyleRemove = () => {
+    if (loadTime !== null) {
+        clearTimeout(loadTime)
+        loadTime = null
+    }
+    document.querySelector('.overlay').classList.add('hidden')
+}
+
+
 function calculate() {
     const gettingValueButtonLeft = document.querySelector(`#left-${oneCurrency}`)
     const gettingValueButtonRight = document.querySelector(`#right-${twoCurrency}`)
 
+    const removeClassLeftSide = document.querySelector('.btn-list-left .colorActive')
+    if (removeClassLeftSide) {
+        removeClassLeftSide.classList.remove('colorActive')
+    }
+
+    if (gettingValueButtonLeft) {
+        gettingValueButtonLeft.classList.add('colorActive')
+    }
+    else {
+        firstSelect.classList.add('colorActive')
+    }
+
+    const removeClassRightSide = document.querySelector('.btn-list-right .colorActive')
+    if (removeClassRightSide) {
+        removeClassRightSide.classList.remove('colorActive')
+    }
+    if (gettingValueButtonRight) {
+        gettingValueButtonRight.classList.add('colorActive')
+    }
+    else {
+        secondSelect.classList.add('colorActive')
+    }
+    loaingStyle()
     getValuePromise(oneCurrency, twoCurrency)
         .then((rates) => {
-            console.log(rates);
-            console.log(leftArea.value);
+            variable.push(rates[0], rates[1])
+            variableRevers.push(rates[1], rates[0])
             rightArea.value = rates[0] * leftArea.value
+
+            paragrafLeft.innerText = `1 ${oneCurrency} = ${rates[0]} ${twoCurrency}`
+            paragrafRight.innerText = `1 ${twoCurrency} = ${rates[1]} ${oneCurrency}`
+            loadStyleRemove()
         })
 }
 
+const calculateKeyUpLeft = () => {
+    const valueInputLeft = leftArea.value
+    rightArea.value = variableRevers[1] * valueInputLeft
+}
+
+const calculateKeyUpRight = () => {
+    const valueInputRight = rightArea.value
+    leftArea.value = variableRevers[0] * valueInputRight
+}
 
 const loadingPage = () => {
     functionDataApi()
@@ -81,9 +162,8 @@ const loadingPage = () => {
                 }
             })
         })
+    calculate()
 }
-
-
 
 loadingPage()
 

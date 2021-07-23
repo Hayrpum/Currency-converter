@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
 
                 <div class="firstWindow">
                     <p class="info">У меня есть</p>
-                    <div class="btn-list">
+                    <div class="btn-list-left">
                         <button class="button-left" id="left-RUB">RUB</button>
                         <button class="button-left" id="left-USD">USD</button>
                         <button class="button-left" id="left-EUR">EUR</button>
@@ -44,18 +45,18 @@
                     </div>
                     <div class="input-line">
                         <input type="number" class="data-entery" value="1" id="input-left">
-                        <p class="data-entery-p">1 RUB = 0.0135 USD</p>
+                        <p class="data-entery-paragraf-left"></p>
                     </div>
 
                 </div>
 
                 <div class="switch">
-                    <img class="switch-arrow" src="/img/Group 5.png" alt="">
+                    <img class="switch-arrow" id="arrow" src="/img/Group 5.png" alt="">
                 </div>
 
                 <div class="secondWindow">
                     <p class="info">Хочу приобрести</p>
-                    <div class="btn-list">
+                    <div class="btn-list-right">
                         <button class="button-right" id="right-RUB">RUB</button>
                         <button class="button-right" id="right-USD">USD</button>
                         <button class="button-right" id="right-EUR">EUR</button>
@@ -66,14 +67,17 @@
                     </div>
                     <div class="input-line">
                         <input type="number" class="data-entery" id="input-right">
-                        <p class="data-entery-p">1 RUB = 0.0135 USD</p>
+                        <p class="data-entery-paragraf-right"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <div class="overlay hidden">
+        <lottie-player class="loading" src="https://assets2.lottiefiles.com/packages/lf20_LkWTpv.json"
+            background="transparent" speed="1" hover loop autoplay></lottie-player>
+    </div>
     <script src="script.converter.js"></script>
 </body>
 

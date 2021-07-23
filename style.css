@@ -130,7 +130,16 @@ h1{
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 3px;
-}
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #C6C6C6;
+    }
 .button-left, .button-right{
     float: left;
     font-family: 'Roboto';
@@ -167,6 +176,7 @@ h1{
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 3px;
+    margin-top: 18px;
 }
 .data-entery-p{
     font-family: 'Roboto';
@@ -178,3 +188,39 @@ h1{
     margin-left: 12px;
     color: #C6C6C6;
 }
+.colorActive{
+    background-color: blueviolet;
+    color: white;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 660px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+  .loading{
+      width: 300px;
+      height: 300px;
+  }
+  p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    align-items: center;
+    color: #C6C6C6;
+  }
+  .data-entery-paragraf-left, .data-entery-paragraf-right{
+    margin-top: 28px ;
+    margin-left: 11px;
+  }
